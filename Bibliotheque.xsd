@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org" targetNamespace="http://www.example.org" elementFormDefault="qualified">
+	<element name="Bibliotheque">
+		<complexType>
+			<sequence>
+				<element ref="tns:ouvrage" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ouvrage">
+		<complexType>
+			<sequence>
+				<element name="Reference" type="string" />
+				<element name="Titre" type="string" />
+				<element name="Auteur" type="string" />
+				<element name="Editeur" type="string" />
+				<element name="Edition" type="int" />
+				<element name="Annee" type="int" />
+				<element name="ISBN" type="int" />
+				<element name="Nombre" type="int" />
+				<element name="Commentaire" type="string" />	
+			</sequence>
+			<attribute name="Disponibilite" type="boolean" use="required" />
+			<attribute name="Exclu" type="boolean" use="required" />
+		</complexType>
+	</element>
+</schema>

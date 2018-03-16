@@ -6,10 +6,10 @@
 <title>Connexion</title>
 <style>
 .center {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
+	margin: auto;
+	width: 50%;
+	border: 3px solid green;
+	padding: 10px;
 }
 </style>
 </head>
@@ -22,9 +22,9 @@
 						<h3 class="panel-title">Accès à la bibliothèque</h3>
 					</div>
 					<div class="panel-body">
-						<form accept-charset="UTF-8" role="form"
-							action="http://localhost:9080/Bibliotheque/auteurServlet"
-							method="post">
+						<form Method="POST"
+							action="http://localhost:8080/TD3/ServletConnexion">
+
 							<fieldset>
 								<div class="form-group">
 									<input class="form-control" placeholder="monmail@exemple.com"
@@ -42,9 +42,10 @@
 						<center>
 							<h4>OU</h4>
 						</center>
-						<a href="./inscription.html"><input class="btn btn-lg btn-facebook btn-block" type="submit"
+						<a href="./inscription.html"><input
+							class="btn btn-lg btn-facebook btn-block" type="submit"
 							value="Inscription"></a>
-						
+
 					</div>
 				</div>
 			</div>
