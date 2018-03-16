@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Vector;
 
 import javax.servlet.Servlet;
@@ -10,9 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import classes.Auteur;
-import classes.Ouvrage;
 import classes.Personne;
 /**
  * Servlet implementation class Test_TD3
@@ -32,12 +28,12 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse reponse) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// On instancie des objets de la classe Personne
 		
-		Personne p1 = new Personne("LEZE","Gérard","gege.leze@gmail.com","gegedu41",false);
-		Personne p2 = new Personne("DORE","Gaëtan","gaga.dore@gmail.com","gagadu37",false);
+		Personne p1 = new Personne("LÉZÉ","Gérard","gege.leze@gmail.com","gegedu41",false);
+		Personne p2 = new Personne("DORÉ","Gaëtan","gaga.dore@gmail.com","gagadu37",false);
 		Personne p3 = new Personne("CHALLEAU","Killian","kiki.challeau@gmail.com","kikidu64",true);
 
 		// On créé un tableau contenant des objets de type Personne
@@ -62,7 +58,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 		
 		if(compteur == p.length) {
 			// Echec de connexion, on invite l'utilisateur à se reloguer
-			getServletConfig().getServletContext().getRequestDispatcher("/ErreurConnexion.jsp").forward(request, reponse);
+			getServletConfig().getServletContext().getRequestDispatcher("/ErreurConnexion.jsp").forward(request, response);
 
 		}else {
 			// Connexion réussie, on redirige l'utilisateur vers la page d'accueil
@@ -70,12 +66,12 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 			vecteur.addElement(prenom);
 			vecteur.addElement(nom);
 			request.setAttribute("vecteur", vecteur);
-			getServletConfig().getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, reponse);
+			getServletConfig().getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 		}
 
 		// TODO Auto-generated method stub
-		reponse.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

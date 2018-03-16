@@ -93,16 +93,17 @@ img {
 					</div>
 					<a class="navbar-brand" href="#" style="float: right;"><span
 						class="glyphicon glyphicon-off" aria-hidden="true"></span></a>
-					</li>
+				</div>
 			</nav>
-			<divclass"row">
+			<div class="row">
 				<img src="image/livre.jpg" alt="logo">
-					<h1>
-						<%		
+				<h1>
+					<%		
 							out.println("Bienvenue <b>" + vecteur.elementAt(0) + " " + vecteur.elementAt(1) +"</b> !");
 						%>
-					</h1>
-				<p> Ici vous pouvez emprunter un livre ou bien rendre un livre que vous avez déjà emprunté ! </p> 
+				</h1>
+				<p>Ici vous pouvez emprunter un livre ou bien rendre un livre
+					que vous avez déjà emprunté !</p>
 			</div>
 		</div>
 	</div>

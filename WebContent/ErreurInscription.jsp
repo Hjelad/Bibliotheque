@@ -9,9 +9,9 @@
 </head>
 <body>
 	<center>
-		<h1>Erreur de connexion</h1>
-		<p>Adresse mail ou mot de passe incorrect</p>
-		<a href="/TD3/html/connexion.html">Nouvelle tentative de connexion</a>
+		<h1>Erreur d'inscription</h1>
+		<p>L'adresse mail renseignée existe déjà</p>
+		<a href="/TD3/html/inscription.html">Nouvelle tentative d'inscription</a>
 	</center>
 </body>
 </html>
