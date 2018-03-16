@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import classes.Personne;
 
 /**
@@ -30,6 +32,9 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* Création ou récupération de la session */
+		HttpSession session = request.getSession();
+		
 		// On instancie des objets de la classe Personne
 		
 			Personne p1 = new Personne("LÉZÉ","Gérard","gege.leze@gmail.com","gegedu41",false);
@@ -42,6 +47,7 @@ public class ServletInscription extends HttpServlet {
 			String mail = request.getParameter("email");
 			String prenom = request.getParameter("prenom");
 			String nom = request.getParameter("nom");
+			String password = request.getParameter("password");
 			int compteur = 0;
 			
 			for (int i=0;i<p.length;i++) {
@@ -51,11 +57,13 @@ public class ServletInscription extends HttpServlet {
 			}
 			
 			if(compteur == p.length) {
-				// Inscription réussie, on redirige l'utilisateur vers la page d'accueil
+				// Inscription réussie, on instancie un objet Personne et on redirige l'utilisateur vers la page d'accueil
+				Personne pers  = new Personne(nom,prenom,mail,password,false);
 				Vector vecteur = new Vector();
 				vecteur.addElement(prenom);
 				vecteur.addElement(nom);
 				request.setAttribute("vecteur", vecteur);
+				session.setAttribute("vecteur", vecteur);
 				getServletConfig().getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
 			}else {
 				// Echec de l'inscription, on invite l'utilisateur à de nouveau s'inscrire
