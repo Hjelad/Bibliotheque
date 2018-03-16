@@ -48,6 +48,7 @@ public class ServletInscription extends HttpServlet {
 			String prenom = request.getParameter("prenom");
 			String nom = request.getParameter("nom");
 			String password = request.getParameter("password");
+			boolean admin = false;
 			int compteur = 0;
 			
 			for (int i=0;i<p.length;i++) {
@@ -62,6 +63,7 @@ public class ServletInscription extends HttpServlet {
 				Vector vecteur = new Vector();
 				vecteur.addElement(prenom);
 				vecteur.addElement(nom);
+				vecteur.addElement(admin);
 				request.setAttribute("vecteur", vecteur);
 				session.setAttribute("vecteur", vecteur);
 				getServletConfig().getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
