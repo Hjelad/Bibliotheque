@@ -11,7 +11,7 @@
 	<center>
 		<h1>Erreur d'inscription</h1>
 		<p>L'adresse mail renseignée existe déjà</p>
-		<a href="/TD3/html/inscription.html">Nouvelle tentative d'inscription</a>
+		<a href="/Bibliotheque/html/inscription.html">Nouvelle tentative d'inscription</a>
 	</center>
 </body>
 </html>

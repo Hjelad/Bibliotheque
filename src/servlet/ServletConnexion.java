@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import classes.Personne;
 
 /**
- * Servlet implementation class Test_TD3
+ * Servlet implementation class ServletConnexion
  */
 @WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet implements Servlet {

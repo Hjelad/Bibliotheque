@@ -11,7 +11,7 @@
 	<center>
 		<h1>Erreur de connexion</h1>
 		<p>Adresse mail ou mot de passe incorrect</p>
-		<a href="/TD3/html/connexion.html">Nouvelle tentative de connexion</a>
+		<a href="/Bibliotheque/html/connexion.html">Nouvelle tentative de connexion</a>
 	</center>
 </body>
 </html>
