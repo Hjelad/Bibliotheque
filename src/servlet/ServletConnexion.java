@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -97,6 +98,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -107,6 +109,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 
 }

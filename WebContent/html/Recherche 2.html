@@ -7,11 +7,11 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <style type="text/css">
 * {
 	box-sizing: border-box;
@@ -64,39 +64,36 @@
 				<fieldset>
 				<!-- Text input-->
 				<div class="form-group">
-				  <div class="col-md-4">
-				  	<div class="autocomplete" style="width: 300px;">
+				  <div class="col-md-6">
+				  	<div class="autocomplete" style="width:100%;">
 				  		<input id="recherche" name="recherche" type="text" placeholder="Ma recherche" class="form-control input-md">
 				  	</div> 	
 				  </div>
-				   <div class="col-md-4">
+				   <div class="col-md-2">
 				    <select id="genre" name="genre" class="form-control">
 				      <option value=""></option>
 				      <option value="SF">SF</option>
 				      <option value="polar">Polar</option>
 				    </select>
 				  </div>
-				  <div class="col-md-4">
+				  <div class="col-md-2">
 				    <select id="editeur" name="editeur" class="form-control">
 				      <option value="">	</option>
 				      <option value="1">Option 1</option>
 				      <option value="2">Option 2</option>
 				    </select>
 				  </div>
-				</div>
-				
-				<!-- Button -->
-				<div class="form-group">
-				  <div class="col-md-4">
+				  <div class="col-md-2">
 				    <button type="submit" id="recherche" name="recherche" class="btn btn-primary">Recherche</button>
 				  </div>
 				</div>
 				
 				</fieldset>
 			</form>
+		
+	
 			
-			
-			<div class="row col-md-6 col-md-offset-2 custyle">
+	<div class="row col-md-8 col-md-offset-2 custyle">
     <table class="table table-striped custab">
     <thead>
         <tr>
@@ -108,18 +105,18 @@
         </tr>
     </thead>
             <tr>
-                <td>L'avare</td>
+            	<td>L'avare</td>
                 <td>Molière</td>
                 <td>Comédie</td>
                 <td>Louis XIV</td>
-                <td class="text-center"><a href="#" class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Emprunter</a></td>
+                <td class="text-center"><a href="./Recherche.html?id=1" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Emprunter</a></td>                
             </tr>
             <tr>
                 <td>Relou le cours</td>
                 <td>la prof</td>
                 <td>Tragédie</td>
                 <td>Maige</td>
-                <td class="text-center"><a href="#" class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Emprunter</a></td>
+                <td class="text-center"><a href="#" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Emprunter</a></td>
     </table>
     </div>
 		</div>

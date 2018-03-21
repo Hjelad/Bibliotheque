@@ -65,7 +65,6 @@ public class ServletInscription extends HttpServlet {
 				vecteur.addElement(nom);
 				vecteur.addElement(admin);
 				request.setAttribute("vecteur", vecteur);
-				session.setAttribute("vecteur", vecteur);
 				getServletConfig().getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
 			}else {
 				// Echec de l'inscription, on invite l'utilisateur à de nouveau s'inscrire
