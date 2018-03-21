@@ -1,7 +1,12 @@
 package classes;
 
-public class Personne {
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Personne{
 	
+	private static int identifiant;
+	// pour l'auto increment de l'identifiant de la personne
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
 	private String nom;
 	private String prenom;
 	private String mail;
@@ -19,6 +24,7 @@ public class Personne {
 	
 	public Personne(String nom, String prenom, String mail, String motDePasse, Boolean admin) {
 		super();
+		this.identifiant = atomicInteger.incrementAndGet();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
@@ -27,6 +33,14 @@ public class Personne {
 	}
 	
 	// get/set
+	
+	public static int getIdentifiant() {
+		return identifiant;
+	}
+
+	public static void setIdentifiant(int identifiant) {
+		Personne.identifiant = identifiant;
+	}
 
 	public String getNom() {
 		return nom;

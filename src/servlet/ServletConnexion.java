@@ -40,11 +40,14 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 
 		if (request.getParameter("email") != null) {
 
-			// On instancie des objets de la classe Personne
+			// On instancie des objets de la classe Personne présent dans notre BD
 
 			Personne p1 = new Personne("LÉZÉ", "Gérard", "gege.leze@gmail.com", "gegedu41", false);
 			Personne p2 = new Personne("DORÉ", "Gaëtan", "gaga.dore@gmail.com", "gagadu37", false);
 			Personne p3 = new Personne("CHALLEAU", "Killian", "kiki.challeau@gmail.com", "kikidu64", true);
+			System.out.println(p1.getIdentifiant());
+			System.out.println(p2.getIdentifiant());
+			System.out.println(p3.getIdentifiant());
 
 			// On créé un tableau contenant des objets de type Personne
 

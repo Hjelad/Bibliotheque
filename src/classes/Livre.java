@@ -1,8 +1,12 @@
 package classes;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Livre implements Bibliotheque{
 
 	private static int identifiant;
+	// pour l'auto increment de l'identifiant du livre
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
 	private Ouvrage ouvrage;
 	private Editeur editeur;
 	private String ISBN;
@@ -13,6 +17,7 @@ public class Livre implements Bibliotheque{
 
 	public Livre(Ouvrage ouvrage, Editeur editeur, String ISBN, String edition, int anneeEdition, String commentaire, boolean disponible) {
 		super();
+		this.identifiant = atomicInteger.incrementAndGet();
 		this.ouvrage = ouvrage;
 		this.editeur = editeur;
 		this.ISBN = ISBN;
