@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<title>Modifier un ouvrage</title>
+</head>
+<body>
+<form class="form-horizontal" Method="POST"
+							action="http://localhost:8080/Bibliotheque/ServletAjouterLivre">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Modifier Ouvrage</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="titre">Titre</label>  
+  <div class="col-md-4">
+  <input id="titre" name="titre" type="text" value="titre de l'id 1" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nom">Nom auteur</label>  
+  <div class="col-md-4">
+  <input id="nom" name="nom" type="text" placeholder="Hugo" class="form-control input-md"> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="prenom">Prénom auteur</label>  
+  <div class="col-md-4">
+  <input id="prenom" name="prenom" type="text" placeholder="Victor" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="editeur">Éditeur</label>  
+  <div class="col-md-4">
+  <input id="editeur" name="editeur" type="text" placeholder="Bayard" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="pays">Pays d'origine</label>  
+  <div class="col-md-4">
+  <input id="pays" name="pays" type="text" placeholder="France" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="annee">Année d'édition</label>  
+  <div class="col-md-4">
+  <input id="annee" name="annee" type="text" placeholder="1862" class="form-control input-md">
+  </div>
+</div>	
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="edition">Numéro d'édition</label>  
+  <div class="col-md-4">
+  <input id="edition" name="edition" type="text" placeholder="1" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="genre">Genre</label>  
+  <div class="col-md-4">
+  <input id="genre" name="genre" type="text" placeholder="Roman" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="commentaire">Commentaire</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="commentaire" name="commentaire" placeholder="Ajouter un commentaire ici"></textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <div class="col-md-4">
+   <button type="submit" id="modifier" name="modifier" class="btn btn-primary"> Modifier </button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+ <a href="#" ><button id="supprimer" name="supprimer" class="btn btn-primary"> Supprimer </button> </a>
+</body>
+</html>
