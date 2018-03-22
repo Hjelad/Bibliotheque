@@ -14,7 +14,6 @@ import classes.Auteur;
 import classes.Editeur;
 import classes.Livre;
 import classes.Ouvrage;
-import classes.Personne;
 
 /**
  * Servlet implementation class ServletEmprunter
@@ -67,19 +66,20 @@ public class ServletEmprunter extends HttpServlet {
 		Livre l4 = new Livre(o4, e3, "7-394-43947-2", "Edition Alan Lee", 1954, "Etat OK", false);
 		Livre l5 = new Livre(o5, e3, "8-453-43298-6", "Edition Alan Lee", 1954, "R.A.S", false);
 		Livre l6 = new Livre(o6, e3, "1-463-75843-3", "Edition Alan Lee", 1955, "Page 54 manquante", true);
+		Livre[] l = { l1, l2, l3, l4, l5, l6 };
+		String titreOuvrage = "";
+		String nomAuteur = "";
+		String genre = "";
+		String nomEditeur = "";
+		int compteur = 0;
 
 		/* Création ou récupération de la session */
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("rechercheEmprunt") != null) {
 			// Cas où on effectue une recherche sur la page Emprunter
-			String titreOuvrage = "";
-			String nomAuteur = "";
-			String genre = "";
-			String nomEditeur = "";
-			Livre[] l = { l1, l2, l3, l4, l5, l6 };
+			;
 			String recherche = request.getParameter("rechercheEmprunt");
-			int compteur = 0;
 
 			for (int i = 0; i < l.length; i++) {
 				if (recherche.equals(l[i].getOuvrage().getTitre())) {
@@ -99,6 +99,14 @@ public class ServletEmprunter extends HttpServlet {
 				vecteur.addElement(nomAuteur);
 				vecteur.addElement(genre);
 				vecteur.addElement(nomEditeur);
+				// On ajoute le titre de la liste de tous les ouvrages pour l'auto-complétion de
+				// la recherche
+				for (int i = 0; i < l.length; i++) {
+					vecteur.addElement(l[i].getOuvrage().getTitre());
+				}
+				vecteur.addElement(l.length);
+
+				System.out.println(vecteur.size());
 
 				request.setAttribute("vecteur", vecteur);
 				getServletConfig().getServletContext().getRequestDispatcher("/Recherche.jsp").forward(request,
@@ -110,6 +118,15 @@ public class ServletEmprunter extends HttpServlet {
 				vecteur.addElement(nomAuteur);
 				vecteur.addElement(genre);
 				vecteur.addElement(nomEditeur);
+				
+				// On ajoute le titre de la liste de tous les ouvrages pour l'auto-complétion de
+				// la recherche
+				for (int i = 0; i < l.length; i++) {
+					vecteur.addElement(l[i].getOuvrage().getTitre());
+				}
+				vecteur.addElement(l.length);
+				System.out.println(vecteur.size());
+
 
 				request.setAttribute("vecteur", vecteur);
 				getServletConfig().getServletContext().getRequestDispatcher("/Recherche.jsp").forward(request,
@@ -117,8 +134,32 @@ public class ServletEmprunter extends HttpServlet {
 			}
 		} else {
 			// Cas où on accède à la page Emprunter depuis une autre page
+			// On affiche tous les livres
 
 			Vector vecteur = (Vector) session.getAttribute("vecteur");
+			if (vecteur.size() != 4) {
+				for (int i = vecteur.size(); i > 3; i--) {
+					vecteur.removeElementAt(i - 1);
+				}
+			}
+			for (int i = 0; i < l.length; i++) {
+				titreOuvrage = l[i].getOuvrage().getTitre();
+				nomAuteur = l[i].getOuvrage().getAuteur().getNom();
+				genre = l[i].getOuvrage().getGenre();
+				nomEditeur = l[i].getEditeur().getNomEditeur();
+				vecteur.addElement(titreOuvrage);
+				vecteur.addElement(nomAuteur);
+				vecteur.addElement(genre);
+				vecteur.addElement(nomEditeur);
+			}
+			
+			// On ajoute le titre de la liste de tous les ouvrages pour l'auto-complétion de
+			// la recherche
+			for (int i = 0; i < l.length; i++) {
+				vecteur.addElement(l[i].getOuvrage().getTitre());
+			}
+			vecteur.addElement(l.length);
+
 			request.setAttribute("vecteur", vecteur);
 			System.out.println(vecteur.size());
 			getServletConfig().getServletContext().getRequestDispatcher("/Recherche.jsp").forward(request, response);

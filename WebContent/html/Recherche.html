@@ -66,7 +66,7 @@
 				<div class="form-group">
 				  <div class="col-md-4">
 				  	<div class="autocomplete" style="width: 300px;">
-				  		<input id="recherche" name="recherche" type="text" placeholder="Ma recherche" class="form-control input-md">
+				  		<input id="recherche" name="recherche" type="text" onclick="auto()" placeholder="Ma recherche" class="form-control input-md">
 				  	</div> 	
 				  </div>
 				   <div class="col-md-4">
@@ -241,7 +241,9 @@
 			closeAllLists(e.target);
 		});
 	}
-
-	autocomplete(document.getElementById("recherche"), livres);
+	function auto(){
+		autocomplete(document.getElementById("recherche"), livres);	
+	}
+	
 </script>
 </html>

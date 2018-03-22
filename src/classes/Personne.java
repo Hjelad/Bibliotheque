@@ -1,12 +1,11 @@
 package classes;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Personne{
 	
-	private static int identifiant;
+	private int identifiant;;
+	private static int idCounter = 1;
 	// pour l'auto increment de l'identifiant de la personne
-    private static AtomicInteger atomicInteger = new AtomicInteger(0);
 	private String nom;
 	private String prenom;
 	private String mail;
@@ -24,22 +23,22 @@ public class Personne{
 	
 	public Personne(String nom, String prenom, String mail, String motDePasse, Boolean admin) {
 		super();
-		this.identifiant = atomicInteger.incrementAndGet();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
 		this.motDePasse = motDePasse;
 		this.admin = admin;
+        this.identifiant = idCounter++;
 	}
 	
 	// get/set
 	
-	public static int getIdentifiant() {
+	public int getIdentifiant() {
 		return identifiant;
 	}
 
-	public static void setIdentifiant(int identifiant) {
-		Personne.identifiant = identifiant;
+	public void setIdentifiant(int identifiant) {
+		this.identifiant = identifiant;
 	}
 
 	public String getNom() {
