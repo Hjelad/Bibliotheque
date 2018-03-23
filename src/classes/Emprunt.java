@@ -2,26 +2,23 @@ package classes;
 
 public class Emprunt {
 	
+	private static int idCounter = 1;
 	private int idEmprunt;
-	private int idPersonne;
+	private int mail;
 	private int idLivre;
 	
 	
-	public Emprunt() {
+	public Emprunt(int idEmprunt,int mail, int idLivre) {
 		super();
-	}
-	
-	public Emprunt(int idEmprunt,int idPersonne, int idLivre) {
-		super();
-		this.idEmprunt = idEmprunt;
-		this.idPersonne = idPersonne;
+		this.idEmprunt = idCounter++;
+		this.mail = mail;
 		this.idLivre = idLivre;
 	}
-	public int getIdPersonne() {
-		return idPersonne;
+	public int getMail() {
+		return mail;
 	}
-	public void setIdPersonne(int idPersonne) {
-		this.idPersonne = idPersonne;
+	public void setMail(int mail) {
+		this.mail = mail;
 	}
 	
 	public int getIdLivre() {
@@ -38,6 +35,5 @@ public class Emprunt {
 	public void setIdEmprunt(int idEmprunt) {
 		this.idEmprunt = idEmprunt;
 	}
-	
 	
 }

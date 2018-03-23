@@ -16,8 +16,8 @@
 <script>
 	var livres = [
 <%int last = (int) vecteur.lastElement();
-			for (int i = vecteur.size()-1; i >= vecteur.size() - last-1 ; i--) {
-				if (i == vecteur.size() - last-1) {
+			for (int i = vecteur.size() - 1; i >= vecteur.size() - last - 1; i--) {
+				if (i == vecteur.size() - last - 1) {
 					out.println("\"" + vecteur.elementAt(i) + "\"");
 				} else {
 					out.println("\"" + vecteur.elementAt(i) + "\",");
@@ -216,23 +216,7 @@
 									<input id="rechercheEmprunt" name="rechercheEmprunt"
 										type="text" onclick="auto()" placeholder="Ma recherche"
 										class="form-control input-md">
-
-
 								</div>
-							</div>
-							<div class="col-md-2">
-								<select id="genre" name="genre" class="form-control">
-									<option value=""></option>
-									<option value="SF">SF</option>
-									<option value="polar">Polar</option>
-								</select>
-							</div>
-							<div class="col-md-2">
-								<select id="editeur" name="editeur" class="form-control">
-									<option value=""></option>
-									<option value="1">Option 1</option>
-									<option value="2">Option 2</option>
-								</select>
 							</div>
 						</div>
 
@@ -248,7 +232,7 @@
 				</form>
 
 
-				<div class="row col-md-8 col-md-offset-2 custyle">
+				<form class="row col-md-8 col-md-offset-2 custyle">
 					<table class="table table-striped custab">
 						<thead>
 							<tr>
@@ -260,46 +244,17 @@
 							</tr>
 						</thead>
 						<%
-							if (!(vecteur.elementAt(2).equals(true)) && !(vecteur.elementAt(2).equals(false))) {
-						%>
-						<tr>
-							<td>
-								<%
-									out.println(vecteur.elementAt(0));
-								%>
-							</td>
-							<td>
-								<%
-									out.println(vecteur.elementAt(1));
-								%>
-							</td>
-							<td>
-								<%
-									out.println(vecteur.elementAt(2));
-								%>
-							</td>
-							<td>
-								<%
-									out.println(vecteur.elementAt(3));
-								%>
-							</td>
-							<td class="text-center"><a href="#"
-								class='btn btn-info btn-xs' href="#"><span
-									class="glyphicon glyphicon-edit"></span> Emprunter</a></td>
-						</tr>
-						<%
-							} else {
+
 								for (int i = 3; i < vecteur.size() - last - 1; i = i + 4) {
 									out.println("<tr><td>" + vecteur.elementAt(i) + "</td><td>" + vecteur.elementAt(i + 1) + "</td><td>"
 											+ vecteur.elementAt(i + 2) + "</td><td>" + vecteur.elementAt(i + 3)
-											+ "</td><td class=\"text-center\"><a href=\"#\"class='btn btn-info btn-xs' href=\"#\"><span class=\"glyphicon glyphicon-edit\"></span> Emprunter</a></td></tr>");
+											+ "</td><td class=\"text-center\"><a href=\"http://localhost:8080/Bibliotheque/ServletRendreEmprunt\"class='btn btn-info btn-xs'><span class=\"glyphicon glyphicon-edit\"></span> Emprunter</a></td></tr>");
 								}
-							}
 						%>
 
 
 					</table>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

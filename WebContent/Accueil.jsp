@@ -16,7 +16,7 @@
 	<%}else{%>
 	<%@include file="/html/menu.html"%>
 	<%}%>
-	
+
 	<div class="row">
 		<img src="image/livre.jpg" alt="logo">
 		<h1>
@@ -29,7 +29,6 @@
 		<p>Ici vous pouvez emprunter un livre ou bien rendre un livre que
 			vous avez déjà emprunté !</p>
 	</div>
-	</div>
-	</div>
+
 </body>
 </html>

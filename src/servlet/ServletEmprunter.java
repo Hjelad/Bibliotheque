@@ -94,7 +94,11 @@ public class ServletEmprunter extends HttpServlet {
 
 			if (compteur != l.length) {
 				// La recherche est fructueuse
+				Vector v = (Vector) session.getAttribute("vecteur");
 				Vector vecteur = new Vector();
+				vecteur.addElement(v.elementAt(0));
+				vecteur.addElement(v.elementAt(1));
+				vecteur.addElement(v.elementAt(2));
 				vecteur.addElement(titreOuvrage);
 				vecteur.addElement(nomAuteur);
 				vecteur.addElement(genre);
@@ -113,7 +117,11 @@ public class ServletEmprunter extends HttpServlet {
 						response);
 			} else {
 				// La recherche ne renvoie à aucun résultat
+				Vector v = (Vector) session.getAttribute("vecteur");
 				Vector vecteur = new Vector();
+				vecteur.addElement(v.elementAt(0));
+				vecteur.addElement(v.elementAt(1));
+				vecteur.addElement(v.elementAt(2));
 				vecteur.addElement(titreOuvrage);
 				vecteur.addElement(nomAuteur);
 				vecteur.addElement(genre);

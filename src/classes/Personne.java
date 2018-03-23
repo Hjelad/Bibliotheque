@@ -3,8 +3,6 @@ package classes;
 
 public class Personne{
 	
-	private int identifiant;;
-	private static int idCounter = 1;
 	// pour l'auto increment de l'identifiant de la personne
 	private String nom;
 	private String prenom;
@@ -12,14 +10,6 @@ public class Personne{
 	private String motDePasse;
 	private Boolean admin;
 	
-	public Personne() {
-		super();
-		this.nom = null;
-		this.prenom = null;
-		this.mail = null;
-		this.motDePasse = null;
-		this.admin = false;
-	}
 	
 	public Personne(String nom, String prenom, String mail, String motDePasse, Boolean admin) {
 		super();
@@ -28,18 +18,10 @@ public class Personne{
 		this.mail = mail;
 		this.motDePasse = motDePasse;
 		this.admin = admin;
-        this.identifiant = idCounter++;
 	}
 	
 	// get/set
 	
-	public int getIdentifiant() {
-		return identifiant;
-	}
-
-	public void setIdentifiant(int identifiant) {
-		this.identifiant = identifiant;
-	}
 
 	public String getNom() {
 		return nom;
