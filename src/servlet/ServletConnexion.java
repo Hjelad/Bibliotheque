@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import XML.XMLPersonne;
 import classes.Personne;
 
@@ -23,7 +22,7 @@ import classes.Personne;
 
 public class ServletConnexion extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
-    
+
 	/**
 	 * Default constructor.
 	 */
@@ -41,32 +40,26 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 		/* Création ou récupération de la session */
 		HttpSession session = request.getSession();
 
-		// On charge le fichier XML
+		// On instancie la personne qui se connecte
 	    // Pour arborescence fichier depuis la servlet
 	       String path = request.getSession().getServletContext().getRealPath("/");
 	    // On affiche les noms (fixés en dur dans la fonction de la classe XMLPersonne)
-	       XMLPersonne.afficheALL(path);
 		
 		
+
+
 		if (request.getParameter("email") != null) {
 
-			// On instancie des objets de la classe Personne présent dans notre BD
+			// On instancie les Personnes présent dans notre fichier XML
 			ArrayList<Personne> listePersonne = new ArrayList<Personne>();
-			Personne p1 = new Personne("LÉZÉ", "Gérard", "gege.leze@gmail.com", "gegedu41", false);
-			Personne p2 = new Personne("DORÉ", "Gaëtan", "a", "a", false);
-			Personne p3 = new Personne("CHALLEAU", "Killian", "kiki.challeau@gmail.com", "kikidu64", true);
-
-	        listePersonne.add(p1);
-	        listePersonne.add(p2);
-	        listePersonne.add(p3);
-
-	      // On crée le fichier XML
-	       XMLPersonne.serialisation(listePersonne, path);
+		    int j =XMLPersonne.nbPersonne(path);
+			for(int i=1;i<=j;i++) {
+				listePersonne.add(new Personne(XMLPersonne.getVar(path, "nom",i),XMLPersonne.getVar(path, "prenom",i),XMLPersonne.getVar(path, "mail",i),XMLPersonne.getVar(path, "motDePasse",i),XMLPersonne.getStatut(path, "admin",i)));
+		    }
 
 
 			// On créé un tableau contenant des objets de type Personne
 
-			Personne[] p = { p1, p2, p3 };
 			String mail = request.getParameter("email");
 			String password = request.getParameter("password");
 			String nom = null;
@@ -78,17 +71,17 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 			// l'adresse mail et du mot de passe
 			// Si l'adresse mail et le mot de passe n'existent dans aucune instance, on
 			// renvoie un message d'erreur
-			for (int i = 0; i < p.length; i++) {
-				if (mail.equals(p[i].getMail()) && password.equals(p[i].getMotDePasse())) {
-					nom = p[i].getNom();
-					prenom = p[i].getPrenom();
-					admin= p[i].getAdmin();
+			for (int i = 0; i < listePersonne.size(); i++) {
+				if (mail.equals(listePersonne.get(i).getMail()) && password.equals(listePersonne.get(i).getMotDePasse())) {
+					nom = listePersonne.get(i).getNom();
+					prenom = listePersonne.get(i).getPrenom();
+					admin= listePersonne.get(i).getAdmin();
 				} else {
 					compteur++;
 				}
 			}
 
-			if (compteur == p.length) {
+			if (compteur == listePersonne.size()) {
 				// Echec de connexion, on invite l'utilisateur à se reloguer
 				getServletConfig().getServletContext().getRequestDispatcher("/ErreurConnexion.jsp").forward(request,
 						response);
@@ -124,7 +117,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
+
 	}
 
 }

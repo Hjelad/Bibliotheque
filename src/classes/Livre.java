@@ -1,24 +1,28 @@
 package classes;
 
 
-public class Livre implements Bibliotheque{
+public class Livre{
 
 	private int identifiant;
 	private static int idCounter = 1;
 	// pour l'auto increment de l'identifiant du livre
-	private Ouvrage ouvrage;
-	private Editeur editeur;
+	private String titre;
+	private Auteur auteur;
+	private String genre;
 	private String ISBN;
+	private String nomEditeur;
 	private String edition;
 	private int anneeEdition;
 	private String commentaire;
 	private boolean disponible;
 
-	public Livre(Ouvrage ouvrage, Editeur editeur, String ISBN, String edition, int anneeEdition, String commentaire, boolean disponible) {
+	public Livre(String titre, Auteur auteur,String genre,String ISBN ,String nomEditeur, String edition, int anneeEdition, String commentaire, boolean disponible) {
 		super();
 		this.identifiant = idCounter++;
-		this.ouvrage = ouvrage;
-		this.editeur = editeur;
+		this.titre=titre;
+		this.auteur=auteur;
+		this.genre=genre;
+		this.nomEditeur = nomEditeur;
 		this.ISBN = ISBN;
 		this.edition = edition;
 		this.anneeEdition = anneeEdition;
@@ -34,21 +38,21 @@ public class Livre implements Bibliotheque{
 	public void setIdentifiant(int identifiant) {
 		this.identifiant = identifiant;
 	}
-
-	public Ouvrage getOuvrage() {
-		return ouvrage;
+	
+	public String getGenre() {
+		return genre;
+	}
+	
+	public void setGenre(String genre) {
+		this.genre=genre;
 	}
 
-	public void setOuvrage(Ouvrage ouvrage) {
-		this.ouvrage = ouvrage;
+	public String getNomEditeur() {
+		return nomEditeur;
 	}
 
-	public Editeur getEditeur() {
-		return editeur;
-	}
-
-	public void setEditeur(Editeur editeur) {
-		this.editeur = editeur;
+	public void setNomEditeur(String nomEditeur) {
+		this.nomEditeur = nomEditeur;
 	}
 
 	public String getISBN() {
@@ -90,6 +94,14 @@ public class Livre implements Bibliotheque{
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
+	
+	public Auteur getAuteur() {
+		return auteur;
+	}
+
+	public void setAuteur(Auteur auteur) {
+		this.auteur = auteur;
+	}
 
 	// METHODES
 
@@ -108,6 +120,16 @@ public class Livre implements Bibliotheque{
 		} else {
 			disponible = true;
 		}
+	}
+
+
+	public String getTitre() {
+		return titre;
+	}
+
+
+	public void setTitre(String titre) {
+		this.titre = titre;
 	}
 
 }
