@@ -1,7 +1,7 @@
 package servlet;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.servlet.Servlet;
@@ -12,15 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import XML.XMLPersonne;
 import classes.Personne;
 
 /**
  * Servlet implementation class ServletConnexion
  */
 @WebServlet("/ServletConnexion")
+
 public class ServletConnexion extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
-
+    
 	/**
 	 * Default constructor.
 	 */
@@ -38,15 +41,27 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 		/* Création ou récupération de la session */
 		HttpSession session = request.getSession();
 
-
+		// On charge le fichier XML
+	    // Pour arborescence fichier depuis la servlet
+	       String path = request.getSession().getServletContext().getRealPath("/");
+	    // On affiche les noms (fixés en dur dans la fonction de la classe XMLPersonne)
+	       XMLPersonne.afficheALL(path);
+		
+		
 		if (request.getParameter("email") != null) {
 
 			// On instancie des objets de la classe Personne présent dans notre BD
-
+			ArrayList<Personne> listePersonne = new ArrayList<Personne>();
 			Personne p1 = new Personne("LÉZÉ", "Gérard", "gege.leze@gmail.com", "gegedu41", false);
-			Personne p2 = new Personne("DORÉ", "Gaëtan", "gaga.dore@gmail.com", "gagadu37", false);
+			Personne p2 = new Personne("DORÉ", "Gaëtan", "a", "a", false);
 			Personne p3 = new Personne("CHALLEAU", "Killian", "kiki.challeau@gmail.com", "kikidu64", true);
 
+	        listePersonne.add(p1);
+	        listePersonne.add(p2);
+	        listePersonne.add(p3);
+
+	      // On crée le fichier XML
+	       XMLPersonne.serialisation(listePersonne, path);
 
 
 			// On créé un tableau contenant des objets de type Personne
@@ -67,7 +82,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 				if (mail.equals(p[i].getMail()) && password.equals(p[i].getMotDePasse())) {
 					nom = p[i].getNom();
 					prenom = p[i].getPrenom();
-					admin= p[i].estAdmin();
+					admin= p[i].getAdmin();
 				} else {
 					compteur++;
 				}
