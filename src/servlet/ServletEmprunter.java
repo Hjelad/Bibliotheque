@@ -42,21 +42,28 @@ public class ServletEmprunter extends HttpServlet {
 
 		// Pour arborescence fichier depuis la servlet
 		String path = request.getSession().getServletContext().getRealPath("/");
-		
+
 		// On instancie la liste des auteurs
 		ArrayList<Auteur> listeAuteur = new ArrayList<Auteur>();
 		int l = XMLAuteur.nbAuteur(path);
 		for (int i = 1; i <= l; i++) {
-			listeAuteur.add(new Auteur(XMLAuteur.getVar(path, "nom", i),XMLAuteur.getVar(path, "prenom", i)));
+			listeAuteur.add(new Auteur(XMLAuteur.getVar(path, "nom", i), XMLAuteur.getVar(path, "prenom", i)));
 		}
 
 		// On instancie la liste des livres
 		ArrayList<Livre> listeLivre = new ArrayList<Livre>();
 		int j = XMLLivre.nbLivre(path);
 		for (int i = 1; i <= j; i++) {
-			listeLivre.add(new Livre(XMLLivre.getVar(path, "titre", i), listeAuteur.get(1),
-					XMLLivre.getVar(path, "genre", i), XMLLivre.getVar(path, "ISBN", i),
-					XMLLivre.getVar(path, "nomEditeur", i),XMLLivre.getVar(path, "edition", i),XMLLivre.getAnnee(path, "anneeEdition", i),XMLLivre.getVar(path, "commentaire", i),XMLLivre.getDispo(path, "disponible", i)));
+			String nomAuteur = XMLLivre.getAuteur(path, i);
+			for (int k = 0; k < l; k++) {
+				if (listeAuteur.get(k).getNom().equals(nomAuteur)) {
+					listeLivre.add(new Livre(XMLLivre.getVar(path, "titre", i), listeAuteur.get(k),
+							XMLLivre.getVar(path, "genre", i), XMLLivre.getVar(path, "ISBN", i),
+							XMLLivre.getVar(path, "nomEditeur", i), XMLLivre.getVar(path, "edition", i),
+							XMLLivre.getInt(path, "anneeEdition", i), XMLLivre.getVar(path, "commentaire", i),
+							XMLLivre.getDispo(path, "disponible", i)));
+				}
+			}
 		}
 
 		String titreOuvrage = "";
@@ -79,6 +86,7 @@ public class ServletEmprunter extends HttpServlet {
 					nomAuteur = listeLivre.get(i).getAuteur().getNom();
 					genre = listeLivre.get(i).getGenre();
 					nomEditeur = listeLivre.get(i).getNomEditeur();
+					System.out.println("oui");
 				} else {
 					compteur++;
 				}
@@ -105,6 +113,8 @@ public class ServletEmprunter extends HttpServlet {
 				System.out.println(vecteur.size());
 
 				request.setAttribute("vecteur", vecteur);
+				System.out.println(vecteur.size());
+
 				getServletConfig().getServletContext().getRequestDispatcher("/Recherche.jsp").forward(request,
 						response);
 			} else {
@@ -128,6 +138,8 @@ public class ServletEmprunter extends HttpServlet {
 				System.out.println(vecteur.size());
 
 				request.setAttribute("vecteur", vecteur);
+				System.out.println(vecteur.size());
+
 				getServletConfig().getServletContext().getRequestDispatcher("/Recherche.jsp").forward(request,
 						response);
 			}
@@ -135,12 +147,11 @@ public class ServletEmprunter extends HttpServlet {
 			// Cas où on accède à la page Emprunter depuis une autre page
 			// On affiche tous les livres
 
-			Vector vecteur = (Vector) session.getAttribute("vecteur");
-			if (vecteur.size() != 4) {
-				for (int i = vecteur.size(); i > 3; i--) {
-					vecteur.removeElementAt(i - 1);
-				}
-			}
+			Vector v = (Vector) session.getAttribute("vecteur");
+			Vector vecteur = new Vector();
+			vecteur.addElement(v.get(0));
+			vecteur.addElement(v.get(1));
+			vecteur.addElement(v.get(2));
 			for (int i = 0; i < listeLivre.size(); i++) {
 				titreOuvrage = listeLivre.get(i).getTitre();
 				nomAuteur = listeLivre.get(i).getAuteur().getNom();
@@ -160,6 +171,7 @@ public class ServletEmprunter extends HttpServlet {
 			vecteur.addElement(listeLivre.size());
 
 			request.setAttribute("vecteur", vecteur);
+			System.out.println(listeLivre.size());
 			System.out.println(vecteur.size());
 			getServletConfig().getServletContext().getRequestDispatcher("/Recherche.jsp").forward(request, response);
 

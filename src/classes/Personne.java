@@ -61,15 +61,15 @@ public class Personne{
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	
-	public Boolean getAdmin() {
+
+	public Boolean estAdmin() {
 		return admin;
 	}
-	
+
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}
-
+	
 	
 }
 

@@ -24,12 +24,13 @@
 	<%}else{%>
 	<%@include file="/html/menu.html"%>
 	<%}%>
+	<center><h1>Liste des livres empruntés</h1></center>
 	<div class="body-wrap">
 		<div class="container">
 			<div class="row">
 
 
-				<div class="row col-md-6 col-md-offset-2 custyle">
+				<form class="row col-md-8 col-md-offset-2 custyle">
 					<table class="table table-striped custab">
 						<thead>
 							<tr>
@@ -40,24 +41,18 @@
 								<th class="text-center">Action</th>
 							</tr>
 						</thead>
-						<tr>
-							<td>L'avare</td>
-							<td>Molière</td>
-							<td>Comédie</td>
-							<td>Louis XIV</td>
-							<td class="text-center"><a href="./rendre_livre.html?id=1 "
-								class='btn btn-info btn-xs'><span
-									class="glyphicon glyphicon-send"></span> Rendre</a></td>
-						</tr>
-						<tr>
-							<td>Relou le cours</td>
-							<td>la prof</td>
-							<td>Tragédie</td>
-							<td>Maige</td>
-							<td class="text-center"><a href="#"
-								class='btn btn-info btn-xs' href="#"><span
-									class="glyphicon glyphicon-send"></span> Rendre</a></td>
+						<%
+
+								for (int i = 4; i < vecteur.size() -1; i = i + 4) {
+									out.println("<tr><td>" + vecteur.elementAt(i) + "</td><td>" + vecteur.elementAt(i + 1) + "</td><td>"
+											+ vecteur.elementAt(i + 2) + "</td><td>" + vecteur.elementAt(i + 3)
+											+ "</td><td class=\"text-center\"><a href=\"http://localhost:8080/Bibliotheque/ServletRendreEmprunt?titre="+vecteur.elementAt(i)+"&auteur="+vecteur.elementAt(i+1) +"\"class='btn btn-info btn-xs'><span class=\"glyphicon glyphicon-edit\"></span> Rendre</a></td></tr>");
+								}
+						%>
+						
+
 					</table>
+				</form>
 				</div>
 			</div>
 		</div>

@@ -104,7 +104,7 @@ public class XMLPersonne {
 		}
 		String statut = courant.getChild(var).getText();
 		boolean admin = false;
-		if (statut == "true") {
+		if (statut.equals("true")) {
 			admin = true;
 		}
 		return admin;

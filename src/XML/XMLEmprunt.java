@@ -8,32 +8,30 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
-import javax.xml.bind.Unmarshaller;
 
 import org.jdom2.*;
 import org.jdom2.input.*;
 import java.util.List;
 import java.util.Iterator;
 
-import classes.Auteur;
-import classes.Bibliotheque;
-import classes.Livre;
+import classes.Emprunt;
+import classes.Emprunts;
 
-public class XMLLivre {
+public class XMLEmprunt {
 
 	static Document document;
 	static Element racine;
 
-	public static void serialisation(ArrayList<Livre> listeLivre, String path) {
+	public static void serialisation(ArrayList<Emprunt> listeEmprunt, String path) {
 
 		// create bookstore, assigning book
-		Bibliotheque bibliotheque = new Bibliotheque();
-		bibliotheque.setListLivre(listeLivre);
+		Emprunts emprunts = new Emprunts();
+		emprunts.setListEmprunt(listeEmprunt);
 
 		// create JAXB context and instantiate marshaller
 		JAXBContext context = null;
 		try {
-			context = JAXBContext.newInstance(Bibliotheque.class);
+			context = JAXBContext.newInstance(Emprunts.class);
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,7 +52,7 @@ public class XMLLivre {
 
 		// Write to File
 		try {
-			m.marshal(bibliotheque, new File(path + "livre.xml"));
+			m.marshal(emprunts, new File(path + "emprunt.xml"));
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,14 +64,14 @@ public class XMLLivre {
 		try {
 			// On crée un nouveau document JDOM avec en argument le fichier XML
 			// Le parsing est terminé ;)
-			document = sxb.build(new File(path + "livre.xml"));
+			document = sxb.build(new File(path + "emprunt.xml"));
 		} catch (Exception e) {
 		}
 
 		// On initialise un nouvel élément racine avec l'élément racine du document.
 		racine = document.getRootElement();
 		// On crée une List contenant tous les noeuds "etudiant" de l'Element racine
-		List liste = racine.getChild("listlivre").getChildren("livre");
+		List liste = racine.getChild("listemprunt").getChildren("emprunt");
 
 		Iterator i = liste.iterator();
 		Element courant = null;
@@ -82,94 +80,44 @@ public class XMLLivre {
 		}
 		return courant.getChild(var).getText();
 	}
-	
-	public static String getAuteur(String path,int compteur) {
-		SAXBuilder sxb = new SAXBuilder();
-		try {
-			// On crée un nouveau document JDOM avec en argument le fichier XML
-			// Le parsing est terminé
-			document = sxb.build(new File(path + "livre.xml"));
-		} catch (Exception e) {
-		}
 
-		// On initialise un nouvel élément racine avec l'élément racine du document.
-		racine = document.getRootElement();
-		// On crée une List contenant tous les noeuds "livre" de l'Element racine
-		List liste = racine.getChild("listlivre").getChildren("livre");
-
-		Iterator i = liste.iterator();
-		Element courant = null;
-		for (int j = 0; j < compteur; j++) {
-			courant = (Element) i.next();
-		}
-		return courant.getChild("auteur").getChildText("nom");
-	}
-	
 	public static int getInt(String path, String var, int compteur) {
 		SAXBuilder sxb = new SAXBuilder();
 		try {
 			// On crée un nouveau document JDOM avec en argument le fichier XML
 			// Le parsing est terminé ;)
-			document = sxb.build(new File(path + "livre.xml"));
+			document = sxb.build(new File(path + "emprunt.xml"));
 		} catch (Exception e) {
 		}
 
 		// On initialise un nouvel élément racine avec l'élément racine du document.
 		racine = document.getRootElement();
 		// On crée une List contenant tous les noeuds "etudiant" de l'Element racine
-		List liste = racine.getChild("listlivre").getChildren("livre");
+		List liste = racine.getChild("listemprunt").getChildren("emprunt");
 
 		Iterator i = liste.iterator();
 		Element courant = null;
 		for (int j = 0; j < compteur; j++) {
 			courant = (Element) i.next();
 		}
-		int varInt = Integer.parseInt(courant.getChild(var).getText());
-		return varInt;
+		int id = Integer.parseInt(courant.getChild(var).getText());
+		return id;
 	}
-	
-	public static boolean getDispo(String path, String var, int compteur) {
-		SAXBuilder sxb = new SAXBuilder();
-		try {
-			// On crée un nouveau document JDOM avec en argument le fichier XML
-			// Le parsing est terminé ;)
-			document = sxb.build(new File(path + "livre.xml"));
-		} catch (Exception e) {
-		}
 
-		// On initialise un nouvel élément racine avec l'élément racine du document.
-		racine = document.getRootElement();
-		// On crée une List contenant tous les noeuds "etudiant" de l'Element racine
-		List liste = racine.getChild("listlivre").getChildren("livre");
-
-		Iterator i = liste.iterator();
-		Element courant = null;
-		for (int j = 0; j < compteur; j++) {
-			courant = (Element) i.next();
-		}
-		String convert = courant.getChild(var).getText();
-		boolean dispo = false;
-		if (convert == "true") {
-			dispo = true;
-		}
-		return dispo;
-	}
-	
-
-	public static int nbLivre(String path) {
+	public static int nbEmprunt(String path) {
 		int nb = 0;
 		SAXBuilder sxb = new SAXBuilder();
 		try {
 			// On crée un nouveau document JDOM avec en argument le fichier XML
 			// Le parsing est terminé ;)
-			document = sxb.build(new File(path + "livre.xml"));
+			document = sxb.build(new File(path + "emprunt.xml"));
 		} catch (Exception e) {
 		}
 
 		// On initialise un nouvel élément racine avec l'élément racine du document.
 		racine = document.getRootElement();
 		// On crée une List contenant tous les noeuds "etudiant" de l'Element racine
-		List liste = racine.getChild("listlivre").getChildren("livre");
+		List liste = racine.getChild("listemprunt").getChildren("emprunt");
 
 		Iterator i = liste.iterator();
 		while (i.hasNext()) {

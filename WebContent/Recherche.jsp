@@ -206,7 +206,7 @@
 		<div class="container">
 			<div class="row">
 
-				<form Method="POST"
+				<center></center><form Method="POST"
 					action="http://localhost:8080/Bibliotheque/ServletEmprunter">
 					<fieldset>
 						<!-- Text input-->
@@ -227,6 +227,7 @@
 									class="btn btn-primary">Recherche</button>
 							</div>
 						</div>
+						</center>
 
 					</fieldset>
 				</form>
@@ -245,18 +246,20 @@
 						</thead>
 						<%
 
-								for (int i = 3; i < vecteur.size() - last - 1; i = i + 4) {
+								for (int i = 3; i < vecteur.size() - last -1; i = i + 4) {
 									out.println("<tr><td>" + vecteur.elementAt(i) + "</td><td>" + vecteur.elementAt(i + 1) + "</td><td>"
 											+ vecteur.elementAt(i + 2) + "</td><td>" + vecteur.elementAt(i + 3)
-											+ "</td><td class=\"text-center\"><a href=\"http://localhost:8080/Bibliotheque/ServletRendreEmprunt\"class='btn btn-info btn-xs'><span class=\"glyphicon glyphicon-edit\"></span> Emprunter</a></td></tr>");
+											+ "</td><td class=\"text-center\"><a href=\"http://localhost:8080/Bibliotheque/ServletRendreEmprunt?titre="+vecteur.elementAt(i)+"&auteur="+vecteur.elementAt(i+1) +"&genre="+vecteur.elementAt(i+2)+"&editeur="+vecteur.elementAt(i+3)+"\"class='btn btn-info btn-xs'><span class=\"glyphicon glyphicon-edit\"></span> Emprunter</a></td></tr>");
 								}
 						%>
-
+						
 
 					</table>
 				</form>
 			</div>
 		</div>
 	</div>
+	
+	
 </body>
 </html>

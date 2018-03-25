@@ -4,20 +4,20 @@ public class Emprunt {
 	
 	private static int idCounter = 1;
 	private int idEmprunt;
-	private int mail;
+	private String mail;
 	private int idLivre;
 	
 	
-	public Emprunt(int idEmprunt,int mail, int idLivre) {
+	public Emprunt(String mail, int idLivre) {
 		super();
 		this.idEmprunt = idCounter++;
 		this.mail = mail;
 		this.idLivre = idLivre;
 	}
-	public int getMail() {
+	public String getMail() {
 		return mail;
 	}
-	public void setMail(int mail) {
+	public void setMail(String mail) {
 		this.mail = mail;
 	}
 	

@@ -45,10 +45,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 	       String path = request.getSession().getServletContext().getRealPath("/");
 	    // On affiche les noms (fixés en dur dans la fonction de la classe XMLPersonne)
 		
-		
-
-
-		if (request.getParameter("email") != null) {
+		if (!(request.getParameter("email").equals(null))) {
 
 			// On instancie les Personnes présent dans notre fichier XML
 			ArrayList<Personne> listePersonne = new ArrayList<Personne>();
@@ -75,7 +72,9 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 				if (mail.equals(listePersonne.get(i).getMail()) && password.equals(listePersonne.get(i).getMotDePasse())) {
 					nom = listePersonne.get(i).getNom();
 					prenom = listePersonne.get(i).getPrenom();
-					admin= listePersonne.get(i).getAdmin();
+					admin= listePersonne.get(i).estAdmin();
+
+					
 				} else {
 					compteur++;
 				}
@@ -95,6 +94,7 @@ public class ServletConnexion extends HttpServlet implements Servlet {
 				vecteur.addElement(mail);
 				session.setAttribute("vecteur", vecteur);
 				request.setAttribute("vecteur", vecteur);
+				System.out.println(vecteur.size());
 				getServletConfig().getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 			}
